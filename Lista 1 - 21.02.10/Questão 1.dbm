@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="Exemplo de aula" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="professor">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="120" y="100"/>
+	<column name="pro_matricula" not-null="true">
+		<type name="integer" length="50"/>
+	</column>
+	<column name="pro_nome">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="pro_telefone">
+		<type name="varchar" length="11"/>
+	</column>
+	<column name="pro_formacao">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="professor_pk" type="pk-constr" table="public.professor">
+		<columns names="pro_matricula" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="disciplina">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="560" y="120"/>
+	<column name="dis_codigo">
+		<type name="integer" length="0"/>
+	</column>
+
+	<customidxs object-type="column">
+		<object name="pro_matricula_professor" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="disciplina_pk" index="0"/>
+		<object name="professor_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="ministra" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#8f0ac8"
+	 src-table="public.professor"
+	 dst-table="public.disciplina"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="9.46378" y="-3.275"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+</dbmodel>

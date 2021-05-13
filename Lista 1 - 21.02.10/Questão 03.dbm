@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="90,186" last-zoom="1.15"
+	 default-schema="public" default-owner="postgres">
+<database name="Questão 03" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="cliente">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="100" y="220"/>
+	<column name="cli_CPF" not-null="true">
+		<type name="varchar" length="11"/>
+	</column>
+	<column name="cli_nome">
+		<type name="varchar" length="50"/>
+	</column>
+	<constraint name="cliente_pk" type="pk-constr" table="public.cliente">
+		<columns names="cli_CPF" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="gerente">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="100" y="340"/>
+	<column name="ger_matricula" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ger_nome">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="ger_mesa">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="gerente_pk" type="pk-constr" table="public.gerente">
+		<columns names="ger_matricula" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="emprestimo">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="460" y="220"/>
+	<column name="emp_numero" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="emp_dataInicial">
+		<type name="date" length="0"/>
+	</column>
+	<column name="emp_valorInicial">
+		<type name="money" length="0"/>
+	</column>
+	<column name="emp_taxaJuros">
+		<type name="decimal" length="0"/>
+	</column>
+	<constraint name="emprestimo_pk" type="pk-constr" table="public.emprestimo">
+		<columns names="emp_numero" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="cli_CPF_cliente" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="cliente_fk" index="0"/>
+	</customidxs>
+</table>
+
+<table name="parcela">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="440" y="460"/>
+	<column name="par_codigo" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="par_vencimento">
+		<type name="date" length="0"/>
+	</column>
+	<column name="par_valor">
+		<type name="money" length="0"/>
+	</column>
+	<column name="par_observacao">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="parcela_pk" type="pk-constr" table="public.parcela">
+		<columns names="par_codigo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="faz" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#d67af4"
+	 src-table="public.cliente"
+	 dst-table="public.emprestimo"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="gerencia" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#5555ff"
+	 src-table="public.gerente"
+	 dst-table="public.emprestimo"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="repartido" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#5500ff"
+	 src-table="public.emprestimo"
+	 dst-table="public.parcela"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="17.8277" y="-54.7508"/>
+	</label>
+</relationship>
+
+</dbmodel>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,474" last-zoom="1.25"
+	 default-schema="public" default-owner="postgres">
+<database name="Questões 01 e 02" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="disciplina">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="460" y="100"/>
+	<column name="dis_codigo">
+		<type name="integer" length="0"/>
+	</column>
+</table>
+
+<table name="professor">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="80" y="60"/>
+	<column name="pro_matricula" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="pro_nome">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="pro_telefone">
+		<type name="varchar" length="11"/>
+	</column>
+	<constraint name="professor_pk" type="pk-constr" table="public.professor">
+		<columns names="pro_matricula" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="ministra" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#55ff00"
+	 src-table="public.professor"
+	 dst-table="public.disciplina"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="18.8607" y="0.725"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-9.0325" y="-0.275"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="15.3837" y="-45.3725"/>
+	</label>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<table name="aluno">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="80" y="200"/>
+	<column name="alu_matricula" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="alu_nome">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="alu_telefone">
+		<type name="varchar" length="11"/>
+	</column>
+	<constraint name="aluno_pk" type="pk-constr" table="public.aluno">
+		<columns names="alu_matricula" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="estuda" type="relnn"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#795ab4"
+	 src-table="public.aluno"
+	 dst-table="public.disciplina"
+	 src-required="false" dst-required="false"
+	 table-name="muitos_aluno_tem_muitos_disciplina">
+	<label ref-type="src-label">
+		<position x="15.7625" y="2.25516"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-23.15" y="2.52928"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="-3.54774" y="3.99606"/>
+	</label>
+</relationship>
+
+<domain name="Questões 1 e 2" not-null="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<type name="smallint" length="0"/>
+</domain>
+
+</dbmodel>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.3" use-changelog="false" last-position="0,0" last-zoom="1" max-obj-count="9"
+	 default-schema="public" default-owner="postgres">
+<database name="novo_banco_de_dados" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layer="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="Vendedor" layer="0" collapse-mode="2" max-obj-count="10" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="226.692" y="154.615"/>
+	<column name="cdVendedor" alias="Vendedor" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nmVendedor" not-null="true">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="nmEndereco">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="nrCPF" not-null="true">
+		<type name="varchar" length="11"/>
+	</column>
+	<column name="nmCidade">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="nmBairro">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="sgEstado">
+		<type name="char" length="2"/>
+	</column>
+	<column name="Telefone">
+		<type name="char" length="20"/>
+	</column>
+	<column name="email">
+		<type name="varchar" length="80"/>
+	</column>
+	<constraint name="Vendedor_pk" type="pk-constr" table="public.&quot;Vendedor&quot;">
+		<columns names="cdVendedor" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Imovel" layer="0" collapse-mode="1" max-obj-count="18" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="839" y="358.923"/>
+	<column name="cdImovel" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="dsImovel">
+		<type name="varchar" length="300"/>
+	</column>
+	<column name="vlPreco">
+		<type name="money" length="2"/>
+	</column>
+	<column name="nrAreaUtil">
+		<type name="real" length="0"/>
+	</column>
+	<column name="nrAreaTotal">
+		<type name="real" length="0"/>
+	</column>
+	<column name="dtLancamento">
+		<type name="date" length="0"/>
+	</column>
+	<column name="stVendido">
+		<type name="bool" length="1"/>
+	</column>
+	<column name="nrOfertas">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="imovel_indicado">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nmEndereco">
+		<type name="varchar" length="40"/>
+	</column>
+</table>
+
+<table name="Comprador" layer="0" collapse-mode="1" max-obj-count="10" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="348.077" y="996.615"/>
+	<column name="cdComprador" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nmComprador">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="nmEndereco">
+		<type name="varchar" length="40"/>
+	</column>
+	<column name="Telefone" default-value="(79) 9    -">
+		<type name="char" length="8"/>
+	</column>
+	<column name="nmCPF">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nmCidade">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="nmBairro">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="sgEstado" default-value="SE">
+		<type name="char" length="2"/>
+	</column>
+	<column name="email">
+		<type name="varchar" length="30"/>
+	</column>
+	<constraint name="Comprador_pk" type="pk-constr" table="public.&quot;Comprador&quot;">
+		<columns names="cdComprador" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Oferta" layer="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="177.385" y="581.769"/>
+	<column name="vlOferta">
+		<type name="money" length="0"/>
+	</column>
+	<column name="dtOferta">
+		<type name="date" length="0"/>
+	</column>
+</table>
+
+<table name="Bairro" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="805.615" y="1016.85"/>
+	<column name="cdBairro" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nmBairro">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="Bairro_pk" type="pk-constr" table="public.&quot;Bairro&quot;">
+		<columns names="cdBairro" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Faixa_Imovel" layer="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1404" y="224.077"/>
+	<column name="cdFaixa" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nmFaixa">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="vlMinimo">
+		<type name="money" length="0"/>
+	</column>
+	<column name="vlMaximo">
+		<type name="money" length="0"/>
+	</column>
+	<constraint name="Faixa_Imovel_pk" type="pk-constr" table="public.&quot;Faixa_Imovel&quot;">
+		<columns names="cdFaixa" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Estado" layer="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1583.46" y="571.923"/>
+	<column name="sgEstado" not-null="true">
+		<type name="char" length="2"/>
+	</column>
+	<column name="nmEstado">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="Estado_pk" type="pk-constr" table="public.&quot;Estado&quot;">
+		<columns names="sgEstado" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Cidade" layer="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1436.54" y="945.923"/>
+	<column name="cdCidade" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nmCidade">
+		<type name="varchar" length="20"/>
+	</column>
+
+	<customidxs object-type="column">
+		<object name="sgEstado_Estado" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="Cidade_pk" index="0"/>
+		<object name="Estado_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="Estado 1:N Cidades" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#7192ee"
+	 src-table="public.&quot;Estado&quot;"
+	 dst-table="public.&quot;Cidade&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="-2.55196" y="-74.7908"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-7.50495" y="53.774"/>
+	</label>
+	<constraint name="Cidade_pk" type="pk-constr" table="public.&quot;Cidade&quot;">
+		<columns names="cdCidade" ref-type="src-columns"/>
+	</constraint>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<relationship name="Cidade 1:N Bairros" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#50ced3"
+	 src-table="public.&quot;Cidade&quot;"
+	 dst-table="public.&quot;Bairro&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="71.1586" y="-3.0825"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-100.304" y="39.1818"/>
+	</label>
+</relationship>
+
+<relationship name="Bairro 1:N Imóveis" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a25310"
+	 src-table="public.&quot;Bairro&quot;"
+	 dst-table="public.&quot;Imovel&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="-28.9722" y="70.5432"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-9.23946" y="-49.1553"/>
+	</label>
+	<constraint name="Imovel_pk" type="pk-constr" table="public.&quot;Imovel&quot;">
+		<columns names="cdImovel" ref-type="src-columns"/>
+	</constraint>
+	<special-pk-cols indexes="0"/>
+</relationship>
+
+<relationship name="Cidade 1:N Imóveis" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#9d900d"
+	 src-table="public.&quot;Cidade&quot;"
+	 dst-table="public.&quot;Imovel&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="28.701" y="64.5432"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-43.434" y="-42.6603"/>
+	</label>
+</relationship>
+
+<relationship name="Estado 1:N Imóveis" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#2cc814"
+	 src-table="public.&quot;Estado&quot;"
+	 dst-table="public.&quot;Imovel&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="79.6201" y="34.8678"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-68.0494" y="-45.2118"/>
+	</label>
+</relationship>
+
+<relationship name="Comprador 1:N Ofertas" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#76e5c7"
+	 src-table="public.&quot;Comprador&quot;"
+	 dst-table="public.&quot;Oferta&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="48.9626" y="50.774"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-1.55315" y="-50.1139"/>
+	</label>
+</relationship>
+
+<relationship name="Imóvel 1:N Ofertas" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3adb76"
+	 src-table="public.&quot;Imovel&quot;"
+	 dst-table="public.&quot;Oferta&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="36.3894" y="-10.638"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="-55.7292" y="-19.9238"/>
+	</label>
+</relationship>
+
+<relationship name="Vendedor 1:N Imóveis" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e9c953"
+	 src-table="public.&quot;Vendedor&quot;"
+	 dst-table="public.&quot;Imovel&quot;"
+	 src-required="true" dst-required="false"
+	upd-action="CASCADE"
+	del-action="CASCADE">
+	<label ref-type="src-label">
+		<position x="-76.2038" y="-37.7437"/>
+	</label>
+	<label ref-type="dst-label">
+		<position x="90.774" y="40.7588"/>
+	</label>
+</relationship>
+
+</dbmodel>

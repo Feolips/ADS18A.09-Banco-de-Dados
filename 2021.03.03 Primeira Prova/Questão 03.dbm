@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="285,0" last-zoom="0.95"
+	 default-schema="public" default-owner="postgres">
+<database name="Questão 03 - Felipe Souza Vieira" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="imobiliaria">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="77.8947" y="279.937"/>
+	<column name="imo_cnpj" not-null="true">
+		<type name="varchar" length="15"/>
+	</column>
+	<constraint name="imobiliaria_pk" type="pk-constr" table="public.imobiliaria">
+		<columns names="imo_cnpj" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="lote">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="605.508" y="421.883"/>
+	<column name="unid_registro" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="unid_quadra_neste_loteamento">
+		<type name="varchar" length="15"/>
+	</column>
+	<column name="unid_area_parcela_disponivel">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="unid_area_parcela_non_aedificandi">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="unid_azimute_fachada">
+		<type name="float" length="0"/>
+	</column>
+	<column name="unit_benfeitorias_disponiveis" default-value="agua, esgoto, energia, cabo (tv/telefone/internet), pavimentado">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="unid_reservada" default-value="false">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="unid_vendida" default-value="false">
+		<type name="bool" length="0"/>
+	</column>
+	<constraint name="lote_pk" type="pk-constr" table="public.lote">
+		<columns names="unid_registro" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="con_codigo_contrato" index="9"/>
+		<object name="lot_registro_loteamento" index="8"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="contrato_fk" index="2"/>
+		<object name="lote_uq" index="3"/>
+		<object name="loteamento_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="loteamento">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="829.699" y="254.997"/>
+	<column name="lot_registro" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="lot_nome">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="lot_endereco">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="lot_cep_regiao" default-value="00.000-000">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="lot_serviços_interesse_arredores">
+		<type name="varchar" length="50"/>
+	</column>
+	<constraint name="loteamento_pk" type="pk-constr" table="public.loteamento">
+		<columns names="lot_registro" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cliente">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1437.2" y="48.8897"/>
+	<column name="cli_codigo_contrato" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="cli_numero_CPF" default-value="000.000.000-00">
+		<type name="varchar" length="16"/>
+	</column>
+	<column name="cli_nome_completo">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="cli_telefone_celular" default-value="(00) 9 0000-0000">
+		<type name="varchar" length="17"/>
+	</column>
+	<column name="cli_endereco_atual">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="cli_sociedade" default-value="false">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="cliente_pk" type="pk-constr" table="public.cliente">
+		<columns names="cli_codigo_contrato" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="con_codigo_contrato" index="6"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="contrato_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="desmembramento" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a77175"
+	 src-table="public.loteamento"
+	 dst-table="public.lote"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="6.19662" y="-61.9153"/>
+	</label>
+</relationship>
+
+<table name="corretor">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="460.952" y="154.762"/>
+	<column name="cor_numero_cpf" not-null="true" default-value="000.000.000-00">
+		<type name="varchar" length="16"/>
+	</column>
+	<constraint name="corretor_pk" type="pk-constr" table="public.corretor">
+		<columns names="cor_numero_cpf" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="contrato">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="922.63" y="38.1497"/>
+	<column name="con_codigo" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<constraint name="contrato_pk" type="pk-constr" table="public.contrato">
+		<columns names="con_codigo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="emprego" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#b33610"
+	 src-table="public.imobiliaria"
+	 dst-table="public.corretor"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="2.8339" y="-51.3677"/>
+	</label>
+</relationship>
+
+<relationship name="venda" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ff0000"
+	 src-table="public.corretor"
+	 dst-table="public.contrato"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-4.08901" y="-48.6296"/>
+	</label>
+</relationship>
+
+<relationship name="assinatura" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0000ff"
+	 src-table="public.contrato"
+	 dst-table="public.cliente"
+	 src-required="true" dst-required="false">
+	<label ref-type="src-label">
+		<position x="3.27451" y="4.34405"/>
+	</label>
+</relationship>
+
+<relationship name="compromisso" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#00ff00"
+	 src-table="public.contrato"
+	 dst-table="public.lote"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="2.42056" y="-57.99"/>
+	</label>
+</relationship>
+
+</dbmodel>
